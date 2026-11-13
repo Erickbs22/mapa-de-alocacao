@@ -1,0 +1,18 @@
+services:
+  mapa-alocacao:
+    build: .
+    container_name: mapa-alocacao-app
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - AUTH_SECRET=benner-mapa-alocacao-secret-prod-2026
+    volumes:
+      - ./server/data:/app/server/data
+
+volumes:
+  mapa_data:
+    driver: local
+
