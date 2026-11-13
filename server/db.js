@@ -300,7 +300,7 @@ if (countUsuarios && countUsuarios.count === 0) {
   );
 }
 
-// Garante existência do usuário desenvolvedor para teste mesmo em bases já semeadas
+// Garante existência dos usuários padrão (Dev, Frederico Maiello PO e Erick Souza Admin)
 try {
   const usuarioDevExiste = db.prepare('SELECT id FROM usuarios WHERE LOWER(email) = ?').get('dev@benner.com.br');
   if (!usuarioDevExiste) {
@@ -315,8 +315,34 @@ try {
       null
     );
   }
+
+  // Frederico Maiello (Product Owner)
+  const userFred = db.prepare('SELECT id FROM usuarios WHERE LOWER(email) = ?').get('frederico.maielo@benner.com.br');
+  if (!userFred) {
+    db.prepare(`
+      INSERT INTO usuarios (nome, email, senha_hash, perfil, portfolio_id, ativo)
+      VALUES (?, ?, ?, 'admin', NULL, 1)
+    `).run('Frederico Maiello (Product Owner)', 'frederico.maielo@benner.com.br', hashSenha('benner'));
+  } else {
+    db.prepare(`
+      UPDATE usuarios SET senha_hash = ?, ativo = 1, perfil = 'admin' WHERE LOWER(email) = ?
+    `).run(hashSenha('benner'), 'frederico.maielo@benner.com.br');
+  }
+
+  // Erick Souza (Admin Geral)
+  const userErick = db.prepare('SELECT id FROM usuarios WHERE LOWER(email) = ?').get('erick.souza@benner.com.br');
+  if (!userErick) {
+    db.prepare(`
+      INSERT INTO usuarios (nome, email, senha_hash, perfil, portfolio_id, ativo)
+      VALUES (?, ?, ?, 'admin', NULL, 1)
+    `).run('Erick Souza (Admin Geral)', 'erick.souza@benner.com.br', hashSenha('admin123'));
+  } else {
+    db.prepare(`
+      UPDATE usuarios SET senha_hash = ?, ativo = 1, perfil = 'admin' WHERE LOWER(email) = ?
+    `).run(hashSenha('admin123'), 'erick.souza@benner.com.br');
+  }
 } catch (e) {
-  console.error('Erro ao verificar usuário dev:', e);
+  console.error('Erro ao verificar usuários padrão:', e);
 }
 
 

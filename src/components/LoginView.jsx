@@ -2,11 +2,25 @@ import React, { useState } from 'react';
 
 const CONTAS_DEMO = [
   {
-    rotulo: '👑 Administrador Geral',
-    subtitulo: 'Acesso total a todos os portfólios e gestão de usuários',
-    email: 'admin@benner.com.br',
-    senha: 'admin123',
+    rotulo: '👑 Frederico Maiello (Product Owner)',
+    subtitulo: 'Acesso total de Administrador / PO Benner',
+    email: 'frederico.maielo@benner.com.br',
+    senha: 'benner',
     cor: '#2563EB'
+  },
+  {
+    rotulo: '👑 Erick Souza (Admin Geral)',
+    subtitulo: 'Acesso total a todos os portfólios e gestão de usuários',
+    email: 'erick.souza@benner.com.br',
+    senha: 'admin123',
+    cor: '#1D4ED8'
+  },
+  {
+    rotulo: '👨‍💻 Dev Team (Somente Leitura)',
+    subtitulo: 'Visualização de alocações e consumo sem edição',
+    email: 'dev@benner.com.br',
+    senha: 'dev123',
+    cor: '#7C3AED'
   },
   {
     rotulo: '📁 Carlos Silva (Gerente Financeiro)',
@@ -14,13 +28,6 @@ const CONTAS_DEMO = [
     email: 'carlos.silva@benner.com.br',
     senha: '123456',
     cor: '#0891B2'
-  },
-  {
-    rotulo: '📁 Mariana Costa (Gerente Saúde)',
-    subtitulo: 'Portfólio: Benner Saúde & Operações',
-    email: 'mariana.costa@benner.com.br',
-    senha: '123456',
-    cor: '#059669'
   }
 ];
 
